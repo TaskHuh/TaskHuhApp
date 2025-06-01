@@ -15,6 +15,7 @@ export default defineConfig(async () => ({
   clearScreen: false,
   // 2. tauri expects a fixed port, fail if that port is not available
   server: {
+    allowedHosts: ['.ngrok-free.app'], // allow ngrok as a dev host
     port: 1420,
     strictPort: true,
     host: host || false,
