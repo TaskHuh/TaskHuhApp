@@ -1,25 +1,44 @@
 <script lang="ts">
-let name = $state('')
+	import { tick } from 'svelte';
+	let commandDrawerOpen = $state(false);
+	let drawerInput: HTMLInputElement;
+
+	async function openDrawer() {
+		commandDrawerOpen = true;
+		await tick(); // wait for DOM to update
+		drawerInput?.focus(); // focus input after drawer is shown
+	}
 </script>
 
-<main class="flex flex-col justify-center items-center w-dvw h-dvh bg-[#111111] text-white text-3xl">
-  <h1>Welcome to Tauri + Svelte</h1>
+<main class="flex flex-col items-center w-dvw h-dvh bg-[#111111] text-neutral-200 text-3xl">
+  <button class="flex flex-row justify-center m-2 px-[20vw] py-2 w-80vw border-3 rounded-xl border-sky-700 drop-shadow-lg shadow-slate-500 bg-[#1f1f1f]">
+    Reminders
+  </button>
 
-  <div class="flex flex-row align-middle items-center gap-2 m-4">
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="size-40" alt="Vite Logo" />
-    </a>
-    <a href="https://tauri.app" target="_blank">
-      <img src="/tauri.svg" class="size-40" alt="Tauri Logo" />
-    </a>
-    <a href="https://kit.svelte.dev" target="_blank">
-      <img src="/svelte.svg" class="size-40" alt="SvelteKit Logo" />
-    </a>
+  <!-- Floating Action Button -->
+  <button
+    class="fixed bottom-4 right-4 z-50 w-14 h-14 bg-sky-500 text-white rounded-full shadow-lg flex items-center justify-center text-3xl hover:bg-sky-700 active:scale-95 transition-transform cursor-pointer"
+    aria-label="Add"
+    onclick={openDrawer}
+  >
+    +
+  </button>
+
+  <!-- Bottom Drawer -->
+  <div
+    class={`fixed bottom-0 left-0 w-full bg-[#1f1f1f] text-white rounded-t-2xl shadow-xl transition-transform duration-300 ease-out z-40
+      ${commandDrawerOpen ? 'translate-y-0' : 'translate-y-full'}
+    `}
+    style="height: 40vh"
+  >
+    <div class="p-4 text-center">
+      <h1 class="text-2xl font-semibold mb-2">Command Drawer</h1>
+      <input
+        bind:this={drawerInput}
+        type="text"
+        placeholder="Type here..."
+        class="w-[90%] p-2 text-base rounded-md bg-[#2a2a2a] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
+      />
+    </div>
   </div>
-  <p>Click on the Tauri, Vite, and SvelteKit logos to learn more.</p>
-
-  <form class="m-2 p-2 border-2 border-sky-400 rounded-xl" >
-    <input class="focus:outline-none" placeholder="Enter a name..." bind:value={name}/>
-  </form>
-  <p>Hello {name}!</p>
 </main>
