@@ -4,7 +4,7 @@ import type { ReminderService } from '$lib/services/reminders/ReminderService';
 
 export interface CommandContext {
     reminderService: ReminderService;
-    // list additional services here as necessary
+    // more services will be added here, like a template service
 }
 
 // a single user filled option for a command
@@ -12,7 +12,7 @@ export interface CommandOption {
     name: string;
     description: string;
     required?: boolean;
-    placeholder?: string | (() => string);
+    placeholder?: string | (() => string); // the arrow function lets us generate a value at runtime
     type: 'string' | 'number' | 'boolean' | 'datetime';
 }
 

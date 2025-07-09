@@ -49,21 +49,21 @@
 
   <!-- Floating Action Button -->
    {#if !commandDrawerOpen}
-   <button
-     class="fixed bottom-4 right-4 z-50 w-14 h-14 bg-sky-500 text-white rounded-full shadow-lg flex items-center justify-center text-3xl hover:bg-sky-700 active:scale-95 transition-transform cursor-pointer"
-     aria-label="Add"
-     onclick={openDrawer}
-   >
-     +
-   </button>
+    <button
+        class="fixed bottom-4 right-4 z-50 w-14 h-14 bg-sky-500 text-white rounded-full shadow-lg flex items-center justify-center text-3xl hover:bg-sky-700 active:scale-95 transition-transform cursor-pointer"
+        aria-label="Add"
+        onclick={openDrawer}
+    >
+        +
+    </button>
     {/if}
 
-   {#if inputValue}
-        <CommandSelector inputValue={inputValue} {service} />
-   {/if}
-
-  <!-- Bottom Drawer -->
-   <Drawer open={commandDrawerOpen} onClose={() => {commandDrawerOpen = false}} >
+    
+    <!-- Bottom Drawer -->
+    <Drawer open={commandDrawerOpen} onClose={() => {commandDrawerOpen = false}} >
+       {#if inputValue}
+            <CommandSelector inputValue={inputValue} {service} />
+       {/if}
         <div class="p-4 text-center gap-2">
             <h1 class="text-2xl font-semibold mb-2">Commands</h1>
             <input
