@@ -1,7 +1,7 @@
 import type { CommandDefinition } from "./Commands";
 
 export const createReminderCommand: CommandDefinition = {
-    name: 'createReminder',
+    name: 'Create Reminder',
     description: 'Create a new reminder',
     args: [
         { name: 'title', description: 'The title of the reminder', placeholder: 'Do chores', type: 'string', required: true },

@@ -47,7 +47,7 @@
     Reminders
   </button>
 
-  <!-- Floating Action Button -->
+  <!-- floating new command button -->
    {#if !commandDrawerOpen}
     <button
         class="fixed bottom-4 right-4 z-50 w-14 h-14 bg-sky-500 text-white rounded-full shadow-lg flex items-center justify-center text-3xl hover:bg-sky-700 active:scale-95 transition-transform cursor-pointer"
@@ -59,20 +59,33 @@
     {/if}
 
     
-    <!-- Bottom Drawer -->
-    <Drawer open={commandDrawerOpen} onClose={() => {commandDrawerOpen = false}} >
-       {#if inputValue}
-            <CommandSelector inputValue={inputValue} {service} />
-       {/if}
-        <div class="p-4 text-center gap-2">
-            <h1 class="text-2xl font-semibold mb-2">Commands</h1>
-            <input
-                bind:this={drawerInput}
-                bind:value={inputValue}
-                type="text"
-                placeholder="Type here..."
-                class="w-[90%] p-2 text-base rounded-md bg-[#2a2a2a] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
-            />
+    <!-- command drawer -->
+    <Drawer open={commandDrawerOpen} onClose={() => {commandDrawerOpen = false}} hasInputValue={inputValue.length > 0}>
+        <div class="flex flex-col h-full">
+            <!-- command selector displays any available commands that match the input -->
+            {#if inputValue}
+                <div class="flex-1 overflow-y-auto">
+                    <CommandSelector inputValue={inputValue} {service} />
+                </div>
+            {/if}
+            
+            <!-- input section  -->
+             <!-- attempts to scroll down when input is focused -->
+            <div class="p-4 text-center gap-2 flex-shrink-0">
+                <h1 class="text-2xl font-semibold mb-2">Command</h1>
+                <input
+                    bind:this={drawerInput}
+                    bind:value={inputValue}
+                    onfocus={() => {
+                        setTimeout(() => {
+                            window.scrollTo(0, document.body.scrollHeight);
+                        }, 500); 
+                    }}
+                    type="text"
+                    placeholder="Type here..."
+                    class="w-[90%] p-2 text-base rounded-md bg-[#2a2a2a] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                />
+            </div>
         </div>
    </Drawer>
 </main>
