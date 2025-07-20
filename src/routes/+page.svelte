@@ -60,7 +60,7 @@
 
     
     <!-- command drawer -->
-    <Drawer open={commandDrawerOpen} onClose={() => {commandDrawerOpen = false}} hasInputValue={inputValue.length > 0}>
+    <Drawer open={commandDrawerOpen} onClose={() => {commandDrawerOpen = false}}>
         <div class="flex flex-col h-full">
             <!-- command selector displays any available commands that match the input -->
             {#if inputValue}

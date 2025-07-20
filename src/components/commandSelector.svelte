@@ -41,7 +41,7 @@
         <h1 class="text-sm">Input Value: {inputValue}</h1>
     </div>
     {#if listedCommands.length > 0}
-        <div class="flex flex-col items-center gap-4 mt-4">
+        <div class="flex flex-col items-center gap-4 my-4">
         {#each listedCommands as command}
             <button class="w-[90%] p-2 text-base rounded-md bg-[#2a2a2a] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
              onclick={() => {createReminderWrapper(command)}}>
