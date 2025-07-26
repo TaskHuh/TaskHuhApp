@@ -31,8 +31,8 @@
     
     async function openDrawer() {
         commandDrawerOpen = true
-        await tick() // wait for DOM to update
-        drawerInput?.focus() // focus input after drawer is shown
+        await tick()
+        drawerInput?.focus()
     }
 
     async function closeDrawer() {
@@ -50,11 +50,16 @@
   <!-- floating new command button -->
    {#if !commandDrawerOpen}
     <button
-        class="fixed bottom-4 right-4 z-50 w-14 h-14 bg-sky-500 text-white rounded-full shadow-lg flex items-center justify-center text-3xl hover:bg-sky-700 active:scale-95 transition-transform cursor-pointer"
+        class="fixed bottom-4 right-4 z-50 w-14 h-14 bg-sky-500 text-white rounded-full shadow-lg flex items-center justify-center text-3xl hover:bg-sky-700 active:scale-95 transition-transform cursor-pointer text-center align-text-middle"
         aria-label="Add"
         onclick={openDrawer}
     >
-        +
+    <svg width="30" height="30" viewBox="0 0 450 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <path d="M68 0C85.6755 0 100 14.3245 100 32L100 418C100 435.676 85.6755 450 68 450L32 450C14.3245 450 0 435.676 0 418L0 32C0 14.3245 14.3245 0 32 0L68 0Z" fill="#ECECEC" transform="translate(175 0)" />
+          <path d="M68 0C85.6755 0 100 14.3245 100 32L100 418C100 435.676 85.6755 450 68 450L32 450C14.3245 450 0 435.676 0 418L0 32C0 14.3245 14.3245 0 32 0L68 0Z" fill="#ECECEC" transform="matrix(0 1 -1 0 450 175)" />
+        </g>
+      </svg>
     </button>
     {/if}
 

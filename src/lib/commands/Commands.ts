@@ -13,7 +13,8 @@ export interface CommandOption {
     description: string;
     required?: boolean;
     placeholder?: string | (() => string); // the arrow function lets us generate a value at runtime
-    type: 'string' | 'number' | 'boolean' | 'datetime';
+    type: 'text' | 'radio' | 'datetime-local'; // this helps determine what type of input to use
+    options?: string[]; // for radio buttons
 }
 
 // represents a complete command definition
