@@ -4,6 +4,7 @@
 	import CommandSelector from '../components/commandSelector.svelte';
 	import Drawer from '../components/drawer.svelte';
 	import type { PageProps } from './$types';
+    import InputSelector from '../components/inputSelector.svelte';
 
     // the input value is created inside the drawer,
     // the value is then passed to the command selector
@@ -22,12 +23,6 @@
 	let commandDrawerOpen = $state(false)
 	let drawerInput = $state<HTMLInputElement>()
     let inputValue = $state('create')
-
-    // effect to list values in the console
-    $effect(() => {
-        console.log('commandDrawerOpen: ', commandDrawerOpen)
-        console.log('inputValue: ', inputValue)
-    })
     
     async function openDrawer() {
         commandDrawerOpen = true
@@ -70,14 +65,13 @@
             <!-- command selector displays any available commands that match the input -->
             {#if inputValue}
                 <div class="flex-1 overflow-y-auto">
-                    <CommandSelector inputValue={inputValue} {service} />
+                   <InputSelector {inputValue} />
                 </div>
             {/if}
             
             <!-- input section  -->
              <!-- attempts to scroll down when input is focused -->
             <div class="p-4 text-center gap-2 flex-shrink-0">
-                <h1 class="text-2xl font-semibold mb-2">Command</h1>
                 <input
                     bind:this={drawerInput}
                     bind:value={inputValue}

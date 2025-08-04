@@ -3,11 +3,11 @@
     import type { CommandDefinition } from "$lib/commands/Commands";
     import { commands } from "$lib/commands/index";
     import type { ReminderService } from "$lib/services/reminders/ReminderService";
-    import TextInput from "./argInput/text.svelte";
-    import DateInput from "./argInput/date.svelte";
-    import ChoiceInput from "./argInput/choice.svelte";
+    import TextInput from "./args/text.svelte";
+    import DateInput from "./args/date.svelte";
+    import ChoiceInput from "./args/choice.svelte";
 
-    // this service should be generic later
+    // this service should be generic/modular later
     let { inputValue, service, onCommandSelect } = $props<{ 
         inputValue: string, 
         service: ReminderService,
@@ -21,7 +21,7 @@
     function selectCommand(command: CommandDefinition | null) {
         if (!command) {
             selectedCommand = null
-            return
+            return 
         }
         selectedCommand = command
         onCommandSelect?.(command)
