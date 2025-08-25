@@ -21,6 +21,13 @@ export type AnySelectableOption =
   | ArgumentOption
   | StringOption;
 
+// this gives context to selectable options,
+// allowing an argument to know what command it belongs to
+export interface CommandContextOption {
+    command: CommandOption;
+    arguments: ArgumentOption[];
+}
+
 // Helper functions to create options, these are used for mapping commands and arguments to selectable options
 export const createCommandOption = (value: CommandDefinition): CommandOption => 
   ({ type: 'command', value });

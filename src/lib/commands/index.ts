@@ -5,20 +5,5 @@ import { createReminderCommand } from "./CreateReminder";
 export const commands: CommandDefinition[] = [
     createReminderCommand,
     createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
-    createReminderCommand,
     createReminderCommand
 ]

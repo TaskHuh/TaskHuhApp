@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { CommandDefinition } from '$lib/commands/Commands';
 	import { tick } from 'svelte';
-	import CommandSelector from '../components/commandSelector.svelte';
 	import Drawer from '../components/drawer.svelte';
 	import type { PageProps } from './$types';
     import InputSelector from '../components/inputSelector.svelte';
@@ -70,8 +69,8 @@
             {/if}
             
             <!-- input section  -->
-             <!-- attempts to scroll down when input is focused -->
-            <div class="p-4 text-center gap-2 flex-shrink-0">
+            <!-- attempts to scroll down when input is focused -->
+            <!-- <div class="p-4 text-center gap-2 flex-shrink-0">
                 <input
                     bind:this={drawerInput}
                     bind:value={inputValue}
@@ -84,7 +83,7 @@
                     placeholder="Type here..."
                     class="w-[90%] p-2 text-base rounded-md bg-[#2a2a2a] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
                 />
-            </div>
+            </div> -->
         </div>
    </Drawer>
 </main>
