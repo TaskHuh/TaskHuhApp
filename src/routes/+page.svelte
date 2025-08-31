@@ -64,7 +64,7 @@
             <!-- command selector displays any available commands that match the input -->
             {#if inputValue}
                 <div class="flex-1 overflow-y-auto">
-                   <InputSelector {inputValue} />
+                   <InputSelector {inputValue} serviceContext={service} />
                 </div>
             {/if}
             
