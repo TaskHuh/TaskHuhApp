@@ -1,6 +1,9 @@
 <!-- inputSelector.svelte -->
 <script lang="ts">
     import { commands } from "$lib/commands";
+    import Date from "./args/date.svelte";
+    import Text from "./args/text.svelte";
+    import Choice from "./args/choice.svelte";
     
     function scrollOnFocus(node: HTMLElement) {
         const scroll = () => {
@@ -177,13 +180,19 @@
     {:else if listedOptions.length === 0 && currentSelectableOption}
     <!-- set option value, this is usually a command argument or string option -->
         <h1 class="text-xl mb-2">Set {getOptionName(currentSelectableOption)} Value</h1>
-        <input
-            bind:value={inputValue}
-            type="text"
-            placeholder="Type here..."
-            use:scrollOnFocus
-            class="w-[90%] p-2 text-base rounded-md bg-[#2a2a2a] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
-        />
+        <!-- if the option is an argument, display the appropriate input -->
+        {#if isArgumentOption(currentSelectableOption)}
+            {#if currentSelectableOption?.value.type === 'text'}
+                <Text value={inputValue} placeholder="Type here..." />
+            {/if}
+            {#if currentSelectableOption?.value.type === 'radio'}
+                <Choice value={inputValue} options={currentSelectableOption?.value.options!} />
+            {/if}
+            {#if currentSelectableOption?.value.type === 'datetime-local'}
+                <Date value={inputValue} placeholder="Type here..." />
+            {/if}
+        {/if}
+        <!-- fix this -->
         <button type="button" class="w-[90%] p-2 mt-4 text-base rounded-md bg-[#2a2a2a] border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-sky-500" onclick={() => setOptionValue(currentSelectableOption!, inputValue)}>Set Value</button>
     {:else}
         <h1 class="text-sm">Input Value: {inputValue}</h1>
